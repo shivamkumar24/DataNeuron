@@ -44,19 +44,16 @@ To set up and run the project locally, follow these steps:
 1. Clone the repository:
    
 ```
-
 # git clone https://github.com/shivamkumar24/DataNeuron
 ```
 
 2. Install the required packages:
 ```
-
 # npm install
 ```
 
 3. Run the Project:
 ```
-
 # npm run dev
 ```
 
