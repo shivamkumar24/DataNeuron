@@ -8,7 +8,10 @@ const FirstComponents = () => {
 
   const handleAdd = () => {
     axios
-      .post("http://localhost:2700/api/data", { action: "add", newData: data })
+      .post("https://dataneuronbackend-edbc.onrender.com/api/data", {
+        action: "add",
+        newData: data,
+      })
       .then((response) => {
         setData("");
         toast({

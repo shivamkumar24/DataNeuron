@@ -20,6 +20,7 @@ import {
 
 const SecondComponents = () => {
   const toast = useToast();
+  const [todoID, setTodoID] = useState("");
   const [updatedData, setUpdatedData] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -27,8 +28,9 @@ const SecondComponents = () => {
 
   const handleUpdate = () => {
     axios
-      .post("http://localhost:2700/api/data", {
+      .post("https://dataneuronbackend-edbc.onrender.com/api/data", {
         action: "update",
+        id: todoID,
         newData: updatedData,
       })
       .then((response) => {
@@ -68,6 +70,15 @@ const SecondComponents = () => {
           <ModalHeader>Update your Data</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>Enter ID</FormLabel>
+              <Input
+                ref={initialRef}
+                placeholder="Enter todo ID"
+                onChange={(e) => setTodoID(e.target.value)}
+              />
+            </FormControl>
+
             <FormControl mt={4}>
               <FormLabel>Enter updated Data</FormLabel>
               <Input

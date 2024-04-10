@@ -8,7 +8,7 @@ const ThirdComponents = () => {
 
   const handleCount = () => {
     axios
-      .get("http://localhost:2700/api/count")
+      .get("https://dataneuronbackend-edbc.onrender.com/api/count")
       .then((response) => {
         setAddCount(response.data.addCount);
         setUpdateCount(response.data.updateCount);
