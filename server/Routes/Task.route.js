@@ -30,8 +30,6 @@ taskRouter.post("/create", async (req, res) => {
 taskRouter.patch("/update/:id", async (req, res) => {
   const { id } = req.params;
   const payload = req.body;
-
-  console.log("body", req.body);
   try {
     const UpdatedTaskData = await TaskModel.findByIdAndUpdate(
       { _id: id },
