@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BASE_URL = "http://localhost:2700";
+export const BASE_URL = "https://dataneuronbackend-edbc.onrender.com/";
 
 export const getData = async () => {
   try {
@@ -28,12 +28,11 @@ export const addData = async (data) => {
 };
 
 export const updateData = async ({ id, payload }) => {
-  console.log("checj", id, payload);
   try {
-    const response = await axios.patch(
-      `${BASE_URL}/task/update/${id}`,
-      payload
-    );
+    const response = await axios.patch(`${BASE_URL}/task/update/${id}`, {
+      title: payload,
+    });
+
     console.log("Update successful", response.data.message);
     return response.data.message;
   } catch (error) {
