@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const countSchema = new mongoose.Schema(
   {
-    addCount: { type: Number, default: 0, required: true },
-    updateCount: { type: Number, default: 0, required: true },
+    addCount: { type: Number, default: 0 },
+    updateCount: { type: Number, default: 0 },
   },
   {
     versionKey: false,

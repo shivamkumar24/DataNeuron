@@ -1,36 +1,31 @@
-import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
+import { addData } from "../API Service/apiService";
 import { Box, Input, Button, Heading, useToast } from "@chakra-ui/react";
 
 const FirstComponents = () => {
   const toast = useToast();
-  const [data, setData] = useState("");
+  const [title, setTitle] = useState("");
 
-  const handleAdd = () => {
-    axios
-      .post("https://dataneuronbackend-edbc.onrender.com/api/data", {
-        action: "add",
-        newData: data,
-      })
-      .then((response) => {
-        setData("");
-        toast({
-          title: response.data.message,
-          description: "We've created your data.",
-          status: "success",
-          duration: 500,
-          isClosable: true,
-        });
-      })
-      .catch((error) => {
-        toast({
-          title: "Something went wrong",
-          description: error,
-          status: "error",
-          duration: 500,
-          isClosable: true,
-        });
+  const handleAdd = async () => {
+    try {
+      await addData({ title });
+      setTitle("");
+      toast({
+        title: "Task added",
+        description: "We've created your task for you.",
+        status: "success",
+        duration: 1000,
+        isClosable: true,
       });
+    } catch (error) {
+      toast({
+        title: "There is some issue on create task",
+        description: error,
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
@@ -42,12 +37,12 @@ const FirstComponents = () => {
         w="70%"
         mt="40px"
         type="text"
-        value={data}
-        onChange={(e) => setData(e.target.value)}
-        placeholder="Enter data"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Enter Title"
       />
 
-      <Button onClick={handleAdd}>Add</Button>
+      <Button onClick={handleAdd}>Add Task</Button>
     </Box>
   );
 };
