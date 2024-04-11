@@ -9,6 +9,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("HOME PAGE");
+});
+
 app.use("/task", taskRouter);
 
 app.listen(process.env.PORT, async () => {
